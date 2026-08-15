@@ -89,6 +89,7 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Docker"],
     github: "https://github.com/shahilsingh546/PaisaFlow",
+    live: "https://paisa-flow-user-app-88zd.vercel.app/",
   },
   {
     name: "WriteFlow",
@@ -101,6 +102,7 @@ export const projects: Project[] = [
     ],
     stack: ["React", "TypeScript", "Hono", "Cloudflare Workers", "PostgreSQL", "Tailwind CSS"],
     github: "https://github.com/shahilsingh546/Writeflow",
+    live: "https://writeflow-bjyt.vercel.app/",
   },
 ];
 

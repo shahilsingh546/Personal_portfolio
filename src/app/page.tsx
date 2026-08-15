@@ -11,9 +11,12 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-24">
-      <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-faint mb-8">
-        {label}
-      </h2>
+      <div className="mb-8 flex items-center gap-4">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          {label}
+        </h2>
+        <div aria-hidden className="h-px flex-1 bg-line" />
+      </div>
       {children}
     </section>
   );
@@ -31,7 +34,7 @@ function ExternalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-foreground underline decoration-line underline-offset-4 transition-colors hover:decoration-foreground"
+      className="rounded-full border border-line bg-surface px-4 py-1.5 text-foreground transition-colors hover:border-accent hover:text-accent"
     >
       {children}
     </a>
@@ -40,7 +43,7 @@ function ExternalLink({
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-mono text-[11px] text-muted border border-line rounded-full px-2.5 py-0.5">
+    <span className="font-mono text-[11px] text-muted rounded-full bg-surface border border-line px-2.5 py-0.5">
       {children}
     </span>
   );
@@ -51,9 +54,15 @@ export default function Home() {
     <main className="mx-auto w-full max-w-2xl px-6 py-20 sm:py-28 flex flex-col gap-20">
       {/* Hero */}
       <header>
-        <h1 className="text-2xl font-semibold tracking-tight">{profile.name}</h1>
-        <p className="mt-1 text-muted">
-          {profile.role} at {profile.company} · {profile.location}
+        <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          Open to backend &amp; full-stack roles
+        </p>
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          {profile.name}
+        </h1>
+        <p className="mt-2 text-muted">
+          {profile.role} at <span className="text-accent">{profile.company}</span> · {profile.location}
         </p>
         <p className="mt-6 max-w-prose leading-relaxed text-muted">
           {profile.summary}
@@ -101,20 +110,32 @@ export default function Home() {
           {projects.map((project) => (
             <article
               key={project.name}
-              className="rounded-lg border border-line bg-surface p-6"
+              className="rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent/50"
             >
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="font-medium">{project.name}</h3>
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-xs text-muted transition-colors hover:text-foreground"
-                  >
-                    GitHub ↗
-                  </a>
-                )}
+                <div className="flex items-center gap-4 font-mono text-xs">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent transition-opacity hover:opacity-75"
+                    >
+                      Live Demo ↗
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted transition-colors hover:text-foreground"
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
+                </div>
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {project.description}
